@@ -7,20 +7,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Questrial" rel="stylesheet">
     <link rel="stylesheet" href="../static/style.css" />
+    <script src='https://cdn.socket.io/socket.io-1.4.5.js'></script>
 </head>
 <body>
     <div class="container h-100 w-100">
         <div class="row">
-            <form action="/results" method="POST">
+            <form id="form" action="/results" method="POST">
                 <div class="searchBox">
-                    <input type="text" placeholder="type in query" name="query">
+                    <input type="text" placeholder="Type in Query" name="query" value="{{query}}">
                     <button class="btn" type="submit"><img class="searchicon" src="../static/search_Icon.svg"/></button>
                 </div>
             </form>
         </div>
-        <div class="row"><h2>Amazon books related to: <strong>{{query}}</strong> ({{count}} results found)</h2></div>
-        <div class="row">{{results|safe}}</div>
+        <div class="row"><h2>Amazon books related to: <strong>{{query}}</strong> (<span id="count">{{count}}</span> results found)</h2></div>
+        <div class="row" id="result"></div>
     </div>
+    <script>
+        const input = document.querySelector('input');
+        var socket = io();
+        window.onload = function() {
+            socket.emit('my event', {query: input.value});
+        }
+        document.getElementById('form').onsubmit = ev => {
+            socket.emit('my event', {query: input.value});
+            return false;
+        }
+        socket.on('render', function(data) {
+            document.getElementById('count').innerText = data.count;
+            document.getElementById('result').innerHTML = data.results;
+        });
+    </script>
 </body>
 </html>
 
