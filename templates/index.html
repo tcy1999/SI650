@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI 650 Project Frontend Interface</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Questrial" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container-fluid h-100 bgblue">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div>
+                <h1>Customized Book Search Engine</h1>
+                <form action="/results" method="POST">
+                    <div class="searchBox">
+                        <input type="text" placeholder="TYPE IN QUERY" name="query">
+                        <button class="btn" type="submit"><img class="searchicon" src="../static/search_Icon.svg"/></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const searchBox = document.querySelector('div.searchBox');
+        const input = document.querySelector('input');
+        input.addEventListener('focus', () => {
+            searchBox.classList.add('expand');
+        });
+        input.addEventListener('blur', () => {
+            searchBox.classList.remove('expand');
+        });
+    </script>
+</body>
+</html>
