@@ -121,3 +121,8 @@ input[type=text]:focus {
 .card:hover {
     transform: scale(1.1);
 }
+
+#loading {
+    display: none;
+    cursor: wait;
+}

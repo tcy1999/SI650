@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="../static/style.css" />
 </head>
 <body>
-    <div class="container h-100 w-100">
+    <div id="loading" class="container-fluid h-100" style="background-color: black;">
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+            <h1 style="color: white">Loading</h1>
+            <img src="../static/loading.gif"/>
+        </div>
+    </div>
+    <div id="content" class="container h-100 w-100">
         <div class="row">
-            <form action="/results" method="POST">
+            <form action="." method="POST">
                 <div class="searchBox">
                     <input type="text" placeholder="Type in Query" name="query" value="{{query}}">
                     <button class="btn" type="submit"><img class="searchicon" src="../static/search_Icon.svg"/></button>
@@ -21,6 +27,13 @@
         <div class="row"><h2>Amazon books related to: <strong>{{query}}</strong> ({{count}} results found)</h2></div>
         <div class="row">{{results|safe}}</div>
     </div>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', () => {
+            document.getElementById('loading').style.display = "block";
+            document.getElementById('content').style.display = "none";
+        })
+    </script>
 </body>
 </html>
 
