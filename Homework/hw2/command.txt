@@ -1,0 +1,8 @@
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input covid/doc -index covid/indexes/doc -storeDocvectors -storeRaw
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input covid/query -index covid/indexes/query -storeDocvectors
+
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input gaming/doc -index gaming/indexes/doc -storeDocvectors -storeRaw
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input gaming/query -index gaming/indexes/query -storeDocvectors
+
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input android/doc -index android/indexes/doc -storeDocvectors -storeRaw
+python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 1 -input android/query -index android/indexes/query -storeDocvectors
